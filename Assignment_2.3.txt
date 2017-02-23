@@ -1,0 +1,41 @@
+Explain in detail:
+* Each component of Hadoop 1.x
+
+*The major components are HDFS and MapReduce.
+*They are known as pillars of Hadoop 1.x.
+*Hadoop system is a master/slave architecture.
+*Hadoop 1.x file system has 64MB block size.
+*The default replication factor is 3 which is configurable.
+*There are total 5 components 
+                   1. NameNode
+                   2.DataNode
+                   3.Secondary NameNode
+                   4.JobTracker
+                   5.TaskTracker
+
+*NameNode, DataNode and Secondary NameNode are called as storage components.
+*JobTracker and TaskTracker are called as processing components.
+
+NameNode:
+*The job of the NameNode is to decide how to store the physical location of each and evert file in blocks of the clusters.
+*It also manages the metadata of the files stored.
+*NameNode always stores metadata in FSImage and EditLogs file periodically. This process is called as Checkpoint mechanism.
+
+DataNode:
+*DataNode stores the file data in blocks.
+*It sends the RPC signal periodically to notify the NameNode that it is alive and working.
+
+Secondary NameNode:
+*It acts as the backbone of the NameNode.
+*It stores the metadata details from NameNode periodically as per chechpoint mechanism.
+*When the NameNode goes down, the Secondary NameNode comes into action and acts as the temporary NameNode till the NameNode
+becomes active again.
+
+JobTracker:
+*It resides in the same node as of NameNode.
+*Its job is to assign jobs to the DataNodes or TaskTrackers.
+*It also decides the job scheduling for the DataNodes or TaskTrakers.
+*In case of failure, it decides about the rescheduling of the task to some other nodes. 
+
+TaskTracker:
+*Its job is to execute the task assigned by the JobTracker.
